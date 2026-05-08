@@ -1,156 +1,162 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import time
 
-# --- PAGE CONFIGURATION ---
-st.set_page_config(
-    page_title="CareMate Executive Summary",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
+# --- 網頁配置 ---
+st.set_page_config(page_title="CareMate | Innovating Elderly Care", layout="wide")
 
-# --- PROFESSIONAL CSS (CORPORATE STYLE) ---
+# --- 自定義風格 (色彩鮮艷、活潑排版) ---
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-        color: #2c3e50;
-    }
-    .main {
-        background-color: #ffffff;
-    }
-    .stAlert {
-        border-radius: 2px;
-        border: none;
-        background-color: #f8f9fa;
-    }
-    h1, h2, h3 {
-        color: #1a3a5f;
-        font-weight: 600;
-        border-bottom: 2px solid #e9ecef;
-        padding-bottom: 10px;
-    }
-    .metric-card {
-        background-color: #f1f4f9;
+    .main { background-color: #f0f8ff; }
+    h1 { color: #ff4b4b; font-size: 3rem; text-shadow: 2px 2px #ffeded; }
+    h2 { color: #1f77b4; border-bottom: 3px solid #1f77b4; padding-bottom: 5px; }
+    .stButton>button { background-color: #ff4b4b; color: white; border-radius: 20px; }
+    .feature-card {
+        background-color: white;
         padding: 20px;
-        border-left: 5px solid #1a3a5f;
-        margin-bottom: 10px;
+        border-radius: 15px;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+        border-left: 10px solid #ff4b4b;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- TITLE SECTION ---
-st.title("CareMate: Professional Medical Accompaniment Platform")
-st.markdown("**Executive Business Proposal | Strategic Planning 2026**")
-st.markdown("*Prepared by: Wan-Ning Tseng (112071077), Bo-Ying Zhang (112072172)*")
+# --- 側邊欄：詳細資訊與動畫佔位 ---
+with st.sidebar:
+    st.image("https://cdn-icons-png.flaticon.com/512/3063/3063176.png", width=150)
+    st.title("CareMate Hub")
+    st.markdown("### 🌟 Project Vision")
+    st.write("Redefining medical accompaniment through AI & Empathy.")
+    st.markdown("---")
+    st.write("**Core Team:**")
+    st.success("Wan-Ning Tseng\n\nBo-Ying Zhang")
+    
+    # 這裡可以放進度條，增加動態感
+    st.write("Project Readiness")
+    st.progress(85)
 
-# --- SECTION 1: CORE STRATEGY ---
-st.header("I. Strategic Vision & Core Values")
-col1, col2 = st.columns([2, 1])
+# --- 標題動畫效果 ---
+title_container = st.container()
+with title_container:
+    st.title("CareMate: The Future of Elderly Medical Care")
+    st.subheader("Transforming Loneliness into Professional Companionship")
+    st.write("---")
+
+# --- 第一章：深度背景與痛點 (字數擴充) ---
+st.header("1. The Critical Crisis: Why CareMate Exists")
+col1, col2 = st.columns([1, 1])
+
 with col1:
-    st.subheader("Mission Statement")
+    st.markdown("### 🛑 The Aging Tsunami")
     st.write("""
-    As Taiwan transitions into a super-aged society, the gap between elderly healthcare needs and family 
-    support availability has widened significantly. CareMate provides a secure, institutionalized 
-    platform for medical accompaniment, ensuring that seniors receive professional care while 
-    alleviating the career and psychological pressures on the younger generation.
+    Taiwan is on the brink of a historic demographic shift. By 2025, one in every five citizens will be over 65. 
+    This isn't just a statistic; it's a daily crisis for millions of families. Currently, there are over 4 million 
+    seniors, and more than 60% suffer from chronic conditions like hypertension, diabetes, or heart disease. 
+    These conditions require not just treatment, but **consistent, high-frequency medical follow-ups.**
+    
+    The reality of modern society is harsh:
+    - **Dual-Income Stress:** 70% of households are dual-income. Taking a day off for a 4-hour hospital wait is a luxury many can't afford.
+    - **The 'Sandwich' Generation:** Middle-aged professionals are crushed between career demands and the needs of their aging parents.
+    - **Geographical Barriers:** As urbanization continues, many children live in different cities or even countries (Overseas Taiwanese), leaving their parents to navigate complex hospital systems alone.
     """)
+
 with col2:
-    st.subheader("Core Values")
-    st.write("- **Professional Trust:** Rigorous screening & audit.")
-    st.write("- **Safety Infrastructure:** Real-time tracking & data logging.")
-    st.write("- **Dignified Care:** Empathy-driven senior support.")
-
-# --- SECTION 2: MARKET ANALYSIS & QUANTITATIVE DATA ---
-st.header("II. Market Analysis & Demand Forecast")
-m1, m2, m3, m4 = st.columns(4)
-with m1:
-    st.metric("Elderly Population", "20% (2025E)", "Super-aged Threshold")
-with m2:
-    st.metric("Chronic Disease Base", "2.4M Patients", "Target Market")
-with m3:
-    st.metric("Annual Caregiver Loss", "130,000+", "Labor Shortage")
-with m4:
-    st.metric("Dual-Income Ratio", "70%", "Demand Driver")
-
-with st.container():
-    st.write("#### Pain Point Analysis: Structural Gaps in Care")
-    st.table(pd.DataFrame({
-        "Current Solutions": ["Domestic Helpers", "Personal Agents", "Migrant Workers", "Volunteers"],
-        "Critical Shortcomings": [
-            "Fixed schedules, high overhead",
-            "Lack of rating systems, low transparency",
-            "Communication barriers, limited medical literacy",
-            "Unstable availability, non-standardized quality"
-        ]
-    }))
-
-# --- SECTION 3: OPERATIONAL ARCHITECTURE ---
-st.header("III. Operational Infrastructure & Service Flow")
-st.write("#### Integrated Medical Accompaniment System (IMAS)")
-
-# Highlighting the 8 stages with a professional expander
-with st.expander("Detailed System Architecture & Workflow (8 Stages)", expanded=True):
-    st.markdown("""
-    1. **Demand Acquisition:** Users submit profile, health history, and specific requirements (Language/Gender).
-    2. **AI Matching Engine:** Triple-layer filter (Certification, Availability, Historical Rating).
-    3. **Verification & Escrow:** Digital contract signing and deposit freeze via integrated payment gateways.
-    4. **Deployment:** GPS geofencing triggers upon arrival; caregiver identity verified via QR biometrics.
-    5. **Clinical Management:** Real-time logging of physician instructions, billing codes, and prescription data.
-    6. **Rehabilitation Log:** Post-consultation report generation including follow-up scheduling.
-    7. **Validation:** Bi-directional rating system and automated health file updates.
-    8. **Financial Settlement:** Automated reconciliation of base fees, mileage, and medical advances.
+    st.info("### ⚠️ The Failure of Current Systems")
+    st.write("""
+    Why don't current solutions work?
+    1. **Home Caregivers:** They are chronically undersupplied. Getting a slot is like winning the lottery, and the hourly rates are prohibitive for simple hospital visits.
+    2. **Personal Agents:** Often found through word-of-mouth, these lack any background checks. The risk of elder abuse or financial fraud is a constant anxiety for families.
+    3. **Migrant Workers:** While hardworking, the language barrier in a medical setting is dangerous. Misunderstanding a doctor's dosage instruction can be fatal.
+    4. **Volunteers:** They have the heart, but not the schedule. Reliability is the number one requirement for medical appointments, and volunteers cannot guarantee consistency.
     """)
 
-# Service Classification Table
-st.write("#### Service Categorization & Human Capital")
-c1, c2 = st.columns(2)
-with c1:
-    st.write("**Caregiver Tiers**")
-    st.write("- **Type A (Certified):** NT$500-800/hr (Professional caregivers)")
-    st.write("- **Type B (Medical Interns):** NT$300-450/hr (Medical/Nursing students)")
-    st.write("- **Type C (Retired Experts):** NT$450-650/hr (Retired Nurses/Social Workers)")
-with c2:
-    st.write("**Operational Features**")
-    st.write("- **Fleet Management:** Partnership with Uber/Barrier-free taxi services.")
-    st.write("- **Smart Reminders:** Automated LINE notifications for follow-up & medication.")
-    st.write("- **Digital Ledger:** Secure storage of medical records & history.")
+# --- 第二章：詳細服務架構 (加上互動元件) ---
+st.header("2. Our Innovative Ecosystem")
+st.write("CareMate is not just an app; it is a full-service infrastructure designed for safety and efficiency.")
 
-# --- SECTION 4: FINANCIALS & GROWTH MODEL ---
-st.header("IV. Financial Projections & Business Model")
-col_f1, col_f2 = st.columns([1, 1])
+tab1, tab2, tab3 = st.tabs(["💎 Service Packages", "🤖 Smart Matching", "🛡️ Safety Protocol"])
 
-with col_f1:
-    st.write("#### Revenue Architecture")
-    revenue_data = pd.DataFrame({
-        "Revenue Stream": ["Service Fees", "Matching Commission (30%)", "B2B Partnership", "Gov. Grants"],
-        "Weight": [60, 25, 10, 5]
+with tab1:
+    col_a, col_b, col_c = st.columns(3)
+    col_a.markdown('<div class="feature-card"><h3>Basic Support</h3><p>Registration assistance, clinical accompaniment, and real-time medical recording. We ensure the family knows exactly what the doctor said.</p></div>', unsafe_allow_html=True)
+    col_b.markdown('<div class="feature-card"><h3>Premium Transit</h3><p>Integration with barrier-free Uber/Taxi fleets. Door-to-door service with GPS monitoring from start to finish.</p></div>', unsafe_allow_html=True)
+    col_c.markdown('<div class="feature-card"><h3>Health Ledger</h3><p>A digital health resume for the senior, tracking blood pressure, medication changes, and future appointments automatically.</p></div>', unsafe_allow_html=True)
+
+with tab2:
+    st.write("### How the AI Matching Works")
+    st.write("""
+    Our proprietary algorithm uses a **Triple-Check Logic**:
+    - **Qualification Layer:** Only certified caregivers or vetted medical students can join.
+    - **Compatibility Layer:** Matches language (Hakka, Taiwanese) and personality traits to ensure the senior feels comfortable.
+    - **Efficiency Layer:** Optimizes the caregiver's route to reduce transit costs for the user.
+    """)
+    if st.button("Simulate AI Matching Process"):
+        with st.spinner('Analyzing caregiver database...'):
+            time.sleep(2)
+            st.success("Match Found: 98% Compatibility with Caregiver 'Senior Nurse Lin'")
+
+with tab3:
+    st.write("### Absolute Safety Framework")
+    st.write("""
+    We treat safety as our 'Product Zero'.
+    - **QR Biometrics:** Both the senior and caregiver must scan a QR code to start the service.
+    - **Geofencing:** If the caregiver deviates from the hospital route by more than 500 meters, an automatic alert is sent to our 24/7 center.
+    - **Escrow Payments:** Funds are only released after the family reviews the medical report.
+    """)
+
+# --- 第三章：商業與財務 (豐富圖表) ---
+st.header("3. Financial Viability & Scalability")
+
+col_left, col_right = st.columns([1, 1])
+
+with col_left:
+    st.write("### Market Potential")
+    market_data = pd.DataFrame({
+        "Category": ["Total Seniors", "Chronic Patients", "Target Families", "Initial Users"],
+        "Population (K)": [4000, 2400, 900, 180]
     })
-    fig = px.pie(revenue_data, values='Weight', names='Revenue Stream', 
-                 color_discrete_sequence=['#1a3a5f', '#2c3e50', '#5a7d9a', '#a9c0d3'])
-    fig.update_layout(showlegend=True, margin=dict(t=0, b=0, l=0, r=0))
-    st.plotly_chart(fig, use_container_width=True)
+    fig_market = px.funnel(market_data, x='Population (K)', y='Category', title="Market Conversion Funnel")
+    st.plotly_chart(fig_market, use_container_width=True)
 
-with col_f2:
-    st.write("#### Annual Capital Requirements")
-    budget_data = {
-        "Platform Development": 100000,
-        "Marketing & Acquisition": 100000,
-        "HR & Training Operations": 20000,
-        "Admin & Infrastructure": 1565000,
-        "Operations Reserve": 60000
+with col_right:
+    st.write("### Annual Expenditure Detail")
+    exp_data = {
+        "Platform & AI": 100000,
+        "Omni-channel Marketing": 100000,
+        "Personnel Training": 20000,
+        "Admin & Operations": 1565000,
+        "Emergency Fund": 60000
     }
-    st.bar_chart(pd.Series(budget_data))
-    st.markdown("**Total Projected Capital: TWD 1,845,000 / Year**")
+    df_exp = pd.DataFrame(list(exp_data.items()), columns=['Item', 'Cost'])
+    fig_exp = px.pie(df_exp, values='Cost', names='Item', hole=0.4, color_discrete_sequence=px.colors.sequential.RdBu)
+    st.plotly_chart(fig_exp, use_container_width=True)
 
-# --- SECTION 5: COMPETITIVE ADVANTAGE ---
-st.header("V. Competitive Advantage & Social Impact")
-st.write("""
-- **Technological Barrier:** AI matching algorithms and blockchain-verified certifications.
-- **Service Standardization:** Uniform training protocols and multi-language support (Mandarin, Taiwanese, Hakka, English).
-- **ESG Alignment:** Direct contribution to UN Sustainable Development Goal 3 (Good Health and Well-being).
-""")
+# --- 第四章：深度執行方案 (字數最大化) ---
+st.header("4. Detailed Implementation & Operations")
+with st.expander("Click to expand Full Operational Manual", expanded=False):
+    st.write("""
+    **Phase 1: Pre-Service Preparation**
+    - User Registration: Comprehensive medical history upload, including allergies and mobility status.
+    - Caregiver Training: A mandatory 40-hour module covering hospital layouts, emergency response, and psychological support.
+    
+    **Phase 2: The Accompaniment Journey**
+    - Check-in: GPS log at the residence. Photo verification of the senior's status.
+    - Hospital Navigation: Assisting with kiosk registration, navigating complex corridors, and managing waiting times.
+    - The 'Doctor's Note': Caregivers use our app's voice-to-text tool to record clinical instructions, ensuring 100% accuracy in dosage and follow-up dates.
+    
+    **Phase 3: Post-Service Integration**
+    - Safe Return: Final GPS check-out at home.
+    - Family Debrief: A digital report sent via LINE/Email containing: 
+        1. Summary of the doctor's findings.
+        2. Next appointment date.
+        3. Observations on the senior's mood/physical state.
+    - Settlement: Automated billing and caregiver payout every Friday.
+    """)
 
+# --- 結語 ---
 st.markdown("---")
-st.caption("© 2026 CareMate Strategic Planning Team | Confidential & Proprietary")
+st.balloons() # 重新整理時會有氣球
+st.write("### CareMate: Empowering Families, Protecting Seniors.")
+st.caption("© 2026 CareMate Team | NTHU Innovation Garage. All Rights Reserved.")
