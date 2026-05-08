@@ -10,7 +10,6 @@ st.set_page_config(page_title="CareMate | Innovating Elderly Care", layout="wide
 st.markdown("""
     <style>
     .main { background-color: #f0f8ff; }
-    /* Blue Bold Title */
     h1 { 
         color: #003366; 
         font-size: 3.5rem; 
@@ -18,7 +17,7 @@ st.markdown("""
         text-transform: uppercase;
         margin-bottom: 0px;
     }
-    h2 { color: #1f77b4; border-bottom: 3px solid #1f77b4; padding-bottom: 5px; font-weight: 700; }
+    h2 { color: #1f77b4; border-bottom: 3px solid #1f77b4; padding-bottom: 5px; font-weight: 700; margin-top: 30px;}
     .stButton>button { background-color: #1f77b4; color: white; border-radius: 20px; font-weight: bold; }
     .feature-card {
         background-color: white;
@@ -26,6 +25,25 @@ st.markdown("""
         border-radius: 15px;
         box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
         border-left: 10px solid #1f77b4;
+    }
+    .step-box {
+        background-color: #ffffff;
+        border: 2px solid #1f77b4;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        color: #003366;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .arrow {
+        text-align: center;
+        font-size: 2rem;
+        color: #1f77b4;
+        line-height: 80px;
     }
     .logo-text {
         font-size: 1.2rem;
@@ -53,124 +71,109 @@ with st.sidebar:
 # --- Header Section ---
 title_container = st.container()
 with title_container:
-    # Logo Placeholder & Branding
     st.markdown('<p class="logo-text">CARE MATE SOLUTIONS</p>', unsafe_allow_html=True)
     st.title("CareMate: The Future of Elderly Medical Care")
     st.subheader("Transforming Loneliness into Professional Companionship")
     st.write("---")
 
-# --- Section 1: Critical Crisis Analysis ---
+# --- Section 1: Crisis Analysis ---
 st.header("1. The Critical Crisis: Why CareMate Exists")
 col1, col2 = st.columns([1, 1])
-
 with col1:
     st.markdown("### The Aging Tsunami")
     st.write("""
     Taiwan is on the brink of a historic demographic shift. By 2025, one in every five citizens will be over 65. 
-    This is a daily crisis for millions of families. Currently, there are over 4 million 
-    seniors, and more than 60% suffer from chronic conditions like hypertension, diabetes, or heart disease. 
-    These conditions require consistent, high-frequency medical follow-ups.
-    
+    Currently, there are over 4 million seniors, and more than 60% suffer from chronic conditions. 
     The reality of modern society is harsh:
-    - **Dual-Income Stress:** 70% of households are dual-income. Taking a day off for a 4-hour hospital wait is a luxury many families cannot afford.
-    - **The Sandwich Generation:** Middle-aged professionals are crushed between career demands and the needs of their aging parents.
-    - **Geographical Barriers:** Many children live in different cities or abroad, leaving their parents to navigate complex hospital systems alone.
+    - **Dual-Income Stress:** 70% of households are dual-income, making frequent leave impossible.
+    - **The Sandwich Generation:** Middle-aged professionals are crushed by dual care responsibilities.
+    - **Geographical Barriers:** Distance prevents children from navigating complex hospital systems with parents.
     """)
-
 with col2:
     st.info("### The Failure of Current Systems")
     st.write("""
-    Why don't current solutions work?
-    1. **Home Caregivers:** Chronically undersupplied. Hourly rates are often prohibitive for simple hospital visits.
-    2. **Personal Agents:** Found through word-of-mouth, these lack background checks and formal rating systems.
-    3. **Migrant Workers:** Face severe language barriers in medical settings, which can lead to misinterpretation of clinical instructions.
-    4. **Volunteers:** Lack the schedule consistency required for critical diagnostic appointments.
+    1. **Home Caregivers:** Chronically undersupplied and expensive for short visits.
+    2. **Personal Agents:** Lack background checks and formal accountability.
+    3. **Migrant Workers:** Face severe language barriers in clinical settings.
+    4. **Volunteers:** Lack the schedule consistency required for medical follow-ups.
     """)
 
-# --- Section 2: Service Ecosystem ---
-st.header("2. Our Innovative Ecosystem")
-st.write("CareMate is a full-service infrastructure designed for safety and institutional efficiency.")
+# --- Section 2: Visualized Operational Flow ---
+st.header("2. Visualized Operational Journey")
+st.write("Our systematic approach ensures every medical visit is tracked, secure, and professional.")
 
+# Flowchart implementation using columns
+flow_col1, arrow1, flow_col2, arrow2, flow_col3, arrow3, flow_col4 = st.columns([3, 1, 3, 1, 3, 1, 3])
+
+with flow_col1:
+    st.markdown('<div class="step-box">1. Demand Submission & Health Profile</div>', unsafe_allow_html=True)
+with arrow1:
+    st.markdown('<div class="arrow">➔</div>', unsafe_allow_html=True)
+with flow_col2:
+    st.markdown('<div class="step-box">2. AI-Powered Smart Matching</div>', unsafe_allow_html=True)
+with arrow2:
+    st.markdown('<div class="arrow">➔</div>', unsafe_allow_html=True)
+with flow_col3:
+    st.markdown('<div class="step-box">3. Digital Contract & Escrow Payment</div>', unsafe_allow_html=True)
+with arrow3:
+    st.markdown('<div class="arrow">➔</div>', unsafe_allow_html=True)
+with flow_col4:
+    st.markdown('<div class="step-box">4. Biometric Check-in & Departure</div>', unsafe_allow_html=True)
+
+# Second row of the flow
+st.write("") 
+flow_col5, arrow4, flow_col6, arrow5, flow_col7, arrow6, flow_col8 = st.columns([3, 1, 3, 1, 3, 1, 3])
+
+with flow_col5:
+    st.markdown('<div class="step-box">5. Clinical Support & Medical Recording</div>', unsafe_allow_html=True)
+with arrow4:
+    st.markdown('<div class="arrow">➔</div>', unsafe_allow_html=True)
+with flow_col6:
+    st.markdown('<div class="step-box">6. Safe Return & Final Geofencing</div>', unsafe_allow_html=True)
+with arrow5:
+    st.markdown('<div class="arrow">➔</div>', unsafe_allow_html=True)
+with flow_col7:
+    st.markdown('<div class="step-box">7. Family Debrief & Health Report</div>', unsafe_allow_html=True)
+with arrow6:
+    st.markdown('<div class="arrow">➔</div>', unsafe_allow_html=True)
+with flow_col8:
+    st.markdown('<div class="step-box">8. Automated Settlement & Payout</div>', unsafe_allow_html=True)
+
+# --- Section 3: Innovative Ecosystem ---
+st.header("3. Service Infrastructure")
 tab1, tab2, tab3 = st.tabs(["Service Packages", "Smart Matching", "Safety Protocol"])
-
 with tab1:
     col_a, col_b, col_c = st.columns(3)
     with col_a:
-        st.markdown('<div class="feature-card"><h3>Basic Support</h3><p>Registration assistance, clinical accompaniment, and real-time medical recording to ensure family members stay informed.</p></div>', unsafe_allow_html=True)
+        st.markdown('<div class="feature-card"><h3>Basic Support</h3><p>Registration assistance and clinical transcription for complete family transparency.</p></div>', unsafe_allow_html=True)
     with col_b:
-        st.markdown('<div class="feature-card"><h3>Premium Transit</h3><p>Integration with barrier-free transportation fleets. Includes door-to-door escorting with GPS monitoring.</p></div>', unsafe_allow_html=True)
+        st.markdown('<div class="feature-card"><h3>Premium Transit</h3><p>Barrier-free fleet integration with real-time GPS monitoring.</p></div>', unsafe_allow_html=True)
     with col_c:
-        st.markdown('<div class="feature-card"><h3>Health Ledger</h3><p>A digital health resume tracking medication changes and future appointments automatically.</p></div>', unsafe_allow_html=True)
-
+        st.markdown('<div class="feature-card"><h3>Health Ledger</h3><p>Automated digital health records synchronized across devices.</p></div>', unsafe_allow_html=True)
 with tab2:
-    st.write("### How the AI Matching Works")
-    st.write("""
-    Our proprietary algorithm uses a Triple-Check Logic:
-    - **Qualification Layer:** Mandatory verification of caregiver certifications and background checks.
-    - **Compatibility Layer:** Matches language proficiency (Hakka, Taiwanese, Mandarin) to ensure patient comfort.
-    - **Efficiency Layer:** Optimizes caregiver routes to minimize transit time and costs.
-    """)
-    if st.button("Simulate AI Matching Process"):
-        with st.spinner('Analyzing caregiver database...'):
-            time.sleep(2)
-            st.success("Match Found: 98% Compatibility with Professional Caregiver")
-
+    st.write("### AI Matching Simulation")
+    if st.button("Simulate AI Matching"):
+        with st.spinner('Syncing...'):
+            time.sleep(1.5)
+            st.success("Optimal Caregiver Match Found.")
 with tab3:
-    st.write("### Absolute Safety Framework")
-    st.write("""
-    We treat security as our core priority:
-    - **QR Biometrics:** Double-blind verification between caregiver and patient to start the service.
-    - **Geofencing:** System alerts if the transit route deviates from the pre-planned hospital path.
-    - **Escrow Payments:** Funds are released only after the family reviews the final medical report.
-    """)
+    st.write("### Safety Framework")
+    st.write("- **QR Biometrics:** Secure identity verification.\n- **Geofencing:** Route deviation alerts.\n- **Escrow:** Payment security.")
 
-# --- Section 3: Financial & Market Analysis ---
-st.header("3. Financial Viability and Scalability")
-
-col_left, col_right = st.columns([1, 1])
-
-with col_left:
-    st.write("### Market Potential")
+# --- Section 4: Market & Financials ---
+st.header("4. Financial Viability")
+col_l, col_r = st.columns(2)
+with col_l:
     market_data = pd.DataFrame({
-        "Category": ["Total Seniors", "Chronic Patients", "Target Families", "Initial Users"],
-        "Population (K)": [4000, 2400, 900, 180]
+        "Category": ["Seniors", "Chronic", "Target", "Initial"],
+        "Value (K)": [4000, 2400, 900, 180]
     })
-    fig_market = px.funnel(market_data, x='Population (K)', y='Category', title="Market Conversion Funnel")
-    st.plotly_chart(fig_market, use_container_width=True)
-
-with col_right:
-    st.write("### Annual Expenditure Detail")
-    exp_data = {
-        "Platform Development": 100000,
-        "Marketing Operations": 100000,
-        "HR and Training": 20000,
-        "Admin and Rent": 1565000,
-        "Emergency Fund": 60000
-    }
-    df_exp = pd.DataFrame(list(exp_data.items()), columns=['Item', 'Cost'])
-    fig_exp = px.pie(df_exp, values='Cost', names='Item', hole=0.4, color_discrete_sequence=px.colors.sequential.Blues_r)
-    st.plotly_chart(fig_exp, use_container_width=True)
-
-# --- Section 4: Operational Workflow ---
-st.header("4. Detailed Implementation and Operations")
-with st.expander("Click to view Full Operational Manual", expanded=True):
-    st.write("""
-    **Phase 1: Pre-Service Preparation**
-    - User Registration: Comprehensive upload of medical history and mobility status.
-    - Caregiver Training: Mandatory 40-hour training covering hospital navigation and emergency response.
-    
-    **Phase 2: The Accompaniment Journey**
-    - Check-in: GPS logging at the residence and patient identification.
-    - Hospital Navigation: Managing kiosk registration and clinic wait times.
-    - Digital Transcription: Real-time recording of doctor instructions for family review.
-    
-    **Phase 3: Post-Service Integration**
-    - Safe Return: Final GPS check-out at the senior's residence.
-    - Family Debrief: Detailed report containing clinical findings and next appointment dates.
-    - Settlement: Automated billing and caregiver compensation.
-    """)
+    st.plotly_chart(px.funnel(market_data, x='Value (K)', y='Category', title="Market Funnel"), use_container_width=True)
+with col_r:
+    exp_data = {"Platform": 100000, "Marketing": 100000, "HR": 20000, "Admin": 1565000, "Reserve": 60000}
+    st.plotly_chart(px.pie(values=list(exp_data.values()), names=list(exp_data.keys()), hole=0.4, title="Budget Allocation"), use_container_width=True)
 
 # --- Footer ---
 st.markdown("---")
 st.write("### CareMate: Empowering Families, Protecting Seniors.")
-st.caption("Copyright 2026 CareMate Strategic Planning Team | National Tsing Hua University")
+st.caption("Copyright 2026 CareMate Strategic Planning Team | NTHU")
