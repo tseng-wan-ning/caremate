@@ -10,8 +10,9 @@ st.set_page_config(page_title="CareMate | Strategic Business Proposal", layout="
 st.markdown("""
     <style>
     .main { background-color: #ffffff; }
+    /* Royal Blue Title Style */
     h1 { 
-        color: #003366; 
+        color: #002366; 
         font-size: 3.8rem; 
         font-weight: 900; 
         letter-spacing: -1px;
@@ -32,11 +33,11 @@ st.markdown("""
         background-color: #f8f9fa;
         padding: 30px;
         border-radius: 4px;
-        border-top: 4px solid #003366;
+        border-top: 4px solid #002366;
         height: 100%;
     }
     .value-box {
-        background-color: #003366;
+        background-color: #002366;
         color: white;
         padding: 20px;
         border-radius: 4px;
@@ -49,12 +50,18 @@ st.markdown("""
         border-radius: 4px;
         text-align: center;
         font-size: 0.9rem;
-        color: #003366;
+        color: #002366;
         font-weight: 600;
         height: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    .logo-text {
+        font-size: 1.2rem;
+        color: #1f77b4;
+        font-weight: bold;
+        letter-spacing: 3px;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -71,13 +78,20 @@ with st.sidebar:
     st.write("**Status: Finalist**")
     st.progress(85)
 
-# --- Header ---
-st.markdown('<p style="color: #1f77b4; font-weight: bold; letter-spacing: 3px;">CARE MATE SOLUTIONS 2026</p>', unsafe_allow_html=True)
-st.title("CareMate: Strategic Medical Accompaniment")
-st.subheader("An Institutional Response to Taiwan's Aging Society Crisis")
-st.write("---")
+# --- Header with Logo & Royal Blue Title ---
+title_container = st.container()
+with title_container:
+    col_logo, col_empty = st.columns([1, 8])
+    with col_logo:
+        # 這裡放置專案 Logo 圖示
+        st.image("https://cdn-icons-png.flaticon.com/512/3063/3063176.png", width=80)
+    
+    st.markdown('<p class="logo-text">CARE MATE SOLUTIONS 2026</p>', unsafe_allow_html=True)
+    st.title("CareMate: Strategic Medical Accompaniment")
+    st.subheader("An Institutional Response to Taiwan's Aging Society Crisis")
+    st.write("---")
 
-# --- Section 1: The Crisis (Information Dense) ---
+# --- Section 1: The Crisis ---
 st.header("I. Market Dynamics & The Silver Crisis")
 col1, col2 = st.columns([1, 1])
 
@@ -99,7 +113,7 @@ with col2:
         "Stage": ["Total Elderly", "Chronic Patients", "Care Gap Households", "Addressable Market"],
         "Value": [4000, 2400, 900, 180]
     })
-    st.plotly_chart(px.funnel(market_df, x='Value', y='Stage', color_discrete_sequence=['#003366']), use_container_width=True)
+    st.plotly_chart(px.funnel(market_df, x='Value', y='Stage', color_discrete_sequence=['#002366']), use_container_width=True)
 
 # --- Section 2: Visualized Operational Workflow ---
 st.header("II. Operational Flow & Service Architecture")
@@ -165,13 +179,13 @@ with c3:
 
 # --- Detailed Manual ---
 st.header("VI. Detailed Operational Appendix")
-with st.expander("Explore Comprehensive Implementation Manual (2,000+ Words Context)"):
+with st.expander("Explore Comprehensive Implementation Manual"):
     st.write("""
     **I. Caregiver Recruitment & Audit:** 
     Our recruitment is decentralized yet strictly audited. We prioritize certified nursing assistants and medical students from top-tier universities. Each candidate undergoes a psychological assessment and a 40-hour 'Compassion & Logistics' training module.
     
     **II. The Tech Stack:** 
-    CareMate utilizes a hybrid cloud architecture. The AI matching engine processes over 50 variables per request, including linguistic compatibility (Mandarin, Taiwanese, Hakka) and specific medical expertise required for the visit (e.g., Oncology vs. Orthopedics).
+    CareMate utilizes a hybrid cloud architecture. The AI matching engine processes over 50 variables per request, including linguistic compatibility (Mandarin, Taiwanese, Hakka) and specific medical expertise required for the visit.
     
     **III. Post-Service Analytics:** 
     We don't just finish a visit; we create a data loop. Every visit generates a structured data point that helps families track long-term health trends, which can be shared with primary physicians for better diagnostic outcomes.
