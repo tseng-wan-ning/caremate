@@ -10,13 +10,14 @@ st.set_page_config(page_title="CareMate | Strategic Business Proposal", layout="
 st.markdown("""
     <style>
     .main { background-color: #ffffff; }
-    /* Royal Blue Title Style */
+    /* Royal Blue Title Style - No Logo */
     h1 { 
         color: #002366; 
         font-size: 3.8rem; 
         font-weight: 900; 
         letter-spacing: -1px;
-        margin-bottom: 0px;
+        margin-top: 0px;
+        margin-bottom: 10px;
     }
     h2 { 
         color: #1f77b4; 
@@ -62,6 +63,7 @@ st.markdown("""
         color: #1f77b4;
         font-weight: bold;
         letter-spacing: 3px;
+        margin-bottom: -10px;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -78,18 +80,11 @@ with st.sidebar:
     st.write("**Status: Finalist**")
     st.progress(85)
 
-# --- Header with Logo & Royal Blue Title ---
-title_container = st.container()
-with title_container:
-    col_logo, col_empty = st.columns([1, 8])
-    with col_logo:
-        # 這裡放置專案 Logo 圖示
-        st.image("https://cdn-icons-png.flaticon.com/512/3063/3063176.png", width=80)
-    
-    st.markdown('<p class="logo-text">CARE MATE SOLUTIONS 2026</p>', unsafe_allow_html=True)
-    st.title("CareMate: Strategic Medical Accompaniment")
-    st.subheader("An Institutional Response to Taiwan's Aging Society Crisis")
-    st.write("---")
+# --- Header Section (Logo Removed) ---
+st.markdown('<p class="logo-text">CARE MATE SOLUTIONS 2026</p>', unsafe_allow_html=True)
+st.title("CareMate: Strategic Medical Accompaniment")
+st.subheader("An Institutional Response to Taiwan's Aging Society Crisis")
+st.write("---")
 
 # --- Section 1: The Crisis ---
 st.header("I. Market Dynamics & The Silver Crisis")
@@ -119,7 +114,7 @@ with col2:
 st.header("II. Operational Flow & Service Architecture")
 st.write("Ensuring a seamless transition from home to hospital with real-time institutional oversight.")
 
-# Row 1 of Flow
+# Flow Visualization
 f1, a1, f2, a2, f3, a3, f4 = st.columns([3, 1, 3, 1, 3, 1, 3])
 f1.markdown('<div class="step-box">1. Profile & Health Ledger Creation</div>', unsafe_allow_html=True)
 a1.markdown('<h2 style="border:none; text-align:center; margin:0;">→</h2>', unsafe_allow_html=True)
@@ -129,7 +124,6 @@ f3.markdown('<div class="step-box">3. Digital Escrow & Contract Secure</div>', u
 a3.markdown('<h2 style="border:none; text-align:center; margin:0;">→</h2>', unsafe_allow_html=True)
 f4.markdown('<div class="step-box">4. Biometric Identity Verification</div>', unsafe_allow_html=True)
 
-# Row 2 of Flow
 st.write("")
 f5, a4, f6, a5, f7, a6, f8 = st.columns([3, 1, 3, 1, 3, 1, 3])
 f5.markdown('<div class="step-box">5. Clinical Support & Transcription</div>', unsafe_allow_html=True)
@@ -167,7 +161,7 @@ with col_exp:
     exp_data = {"R&D": 100000, "Marketing": 100000, "HR": 20000, "Operations": 1565000, "Reserve": 60000}
     st.bar_chart(pd.Series(exp_data))
 
-# --- Section 5: The "CareMate" Business Canvas ---
+# --- Section 5: Strategic Business Canvas ---
 st.header("V. Strategic Business Canvas")
 c1, c2, c3 = st.columns(3)
 with c1:
