@@ -2,134 +2,155 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# --- PAGE CONFIG ---
-st.set_page_config(page_title="CareMate | Medical Accompaniment Platform", layout="wide", initial_sidebar_state="expanded")
+# --- PAGE CONFIGURATION ---
+st.set_page_config(
+    page_title="CareMate Executive Summary",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
 
-# --- CUSTOM CSS FOR VIBE ---
+# --- PROFESSIONAL CSS (CORPORATE STYLE) ---
 st.markdown("""
     <style>
-    .main {
-        background-color: #f5f7f9;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+        color: #2c3e50;
     }
-    .stMetric {
+    .main {
         background-color: #ffffff;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .stAlert {
+        border-radius: 2px;
+        border: none;
+        background-color: #f8f9fa;
+    }
+    h1, h2, h3 {
+        color: #1a3a5f;
+        font-weight: 600;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 10px;
+    }
+    .metric-card {
+        background-color: #f1f4f9;
+        padding: 20px;
+        border-left: 5px solid #1a3a5f;
+        margin-bottom: 10px;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- SIDEBAR NAVIGATION ---
-st.sidebar.image("https://cdn-icons-png.flaticon.com/512/3063/3063176.png", width=100)
-st.sidebar.title("CareMate Navigation")
-app_mode = st.sidebar.selectbox("Choose a Section", 
-    ["Project Overview", "Market Analysis", "Service & Workflow", "Business Model", "Financial Plan"])
+# --- TITLE SECTION ---
+st.title("CareMate: Professional Medical Accompaniment Platform")
+st.markdown("**Executive Business Proposal | Strategic Planning 2026**")
+st.markdown("*Prepared by: Wan-Ning Tseng (112071077), Bo-Ying Zhang (112072172)*")
 
-st.sidebar.markdown("---")
-st.sidebar.write("**Team Members:**")
-st.sidebar.info("Wan-Ning Tseng (Sunny)\n\nBo-Ying Zhang")
+# --- SECTION 1: CORE STRATEGY ---
+st.header("I. Strategic Vision & Core Values")
+col1, col2 = st.columns([2, 1])
+with col1:
+    st.subheader("Mission Statement")
+    st.write("""
+    As Taiwan transitions into a super-aged society, the gap between elderly healthcare needs and family 
+    support availability has widened significantly. CareMate provides a secure, institutionalized 
+    platform for medical accompaniment, ensuring that seniors receive professional care while 
+    alleviating the career and psychological pressures on the younger generation.
+    """)
+with col2:
+    st.subheader("Core Values")
+    st.write("- **Professional Trust:** Rigorous screening & audit.")
+    st.write("- **Safety Infrastructure:** Real-time tracking & data logging.")
+    st.write("- **Dignified Care:** Empathy-driven senior support.")
 
-# --- 1. PROJECT OVERVIEW ---
-if app_mode == "Project Overview":
-    st.title("🏥 CareMate: Medical Accompaniment Platform")
-    st.subheader("Secure Support, Safe Guardian, Warm Companionship")
-    
-    col1, col2 = st.columns([2, 1])
-    with col1:
-        st.markdown("""
-        ### Vision
-        As Taiwan enters a super-aged society, many seniors require regular medical follow-ups. However, children often cannot accompany them due to work, distance, or life pressure. 
-        **CareMate** is dedicated to providing a safe, trustworthy platform that bridges the gap between family needs and professional care.
-        
-        ### Core Values
-        - **Trustworthy Entrustment:** Stringent vetting for peace of mind.
-        - **Safety Guardian:** Real-time tracking and medical recording.
-        - **Warm Companionship:** Respectful care for seniors to maintain their dignity.
-        """)
-    with col2:
-        st.success("**Project Milestone**\n\nNTHU Startup Garage Finalist")
-        st.warning("**Focus Area**\n\nESG & Silver Economy")
+# --- SECTION 2: MARKET ANALYSIS & QUANTITATIVE DATA ---
+st.header("II. Market Analysis & Demand Forecast")
+m1, m2, m3, m4 = st.columns(4)
+with m1:
+    st.metric("Elderly Population", "20% (2025E)", "Super-aged Threshold")
+with m2:
+    st.metric("Chronic Disease Base", "2.4M Patients", "Target Market")
+with m3:
+    st.metric("Annual Caregiver Loss", "130,000+", "Labor Shortage")
+with m4:
+    st.metric("Dual-Income Ratio", "70%", "Demand Driver")
 
-# --- 2. MARKET ANALYSIS ---
-elif app_mode == "Market Analysis":
-    st.title("📈 Market Insights & Demand")
-    
-    # Key Metrics
-    m1, m2, m3 = st.columns(3)
-    m1.metric("Elderly Pop. (2025)", "20%", "Super-aged")
-    m2.metric("Chronic Disease Rate", "60%+", "High Demand")
-    m3.metric("Caregiver Turnover", "130k+", "Annual")
+with st.container():
+    st.write("#### Pain Point Analysis: Structural Gaps in Care")
+    st.table(pd.DataFrame({
+        "Current Solutions": ["Domestic Helpers", "Personal Agents", "Migrant Workers", "Volunteers"],
+        "Critical Shortcomings": [
+            "Fixed schedules, high overhead",
+            "Lack of rating systems, low transparency",
+            "Communication barriers, limited medical literacy",
+            "Unstable availability, non-standardized quality"
+        ]
+    }))
 
-    with st.expander("🔍 Deep Dive: Pain Points"):
-        c1, c2 = st.columns(2)
-        c1.write("**For Family Members:**\n- Work-life conflict\n- Geographical distance\n- Information asymmetry (Medical jargon)")
-        c2.write("**Existing Service Gaps:**\n- In-home caregivers: High cost, scheduling difficulty\n- Personal agents: Low transparency, high risk\n- Migrant workers: Language barriers")
+# --- SECTION 3: OPERATIONAL ARCHITECTURE ---
+st.header("III. Operational Infrastructure & Service Flow")
+st.write("#### Integrated Medical Accompaniment System (IMAS)")
 
-    st.markdown("### Target Audience")
-    st.write("Primary: 30-55 year-old professionals in Tier-1 cities (Taipei, Taichung, Kaohsiung).")
+# Highlighting the 8 stages with a professional expander
+with st.expander("Detailed System Architecture & Workflow (8 Stages)", expanded=True):
+    st.markdown("""
+    1. **Demand Acquisition:** Users submit profile, health history, and specific requirements (Language/Gender).
+    2. **AI Matching Engine:** Triple-layer filter (Certification, Availability, Historical Rating).
+    3. **Verification & Escrow:** Digital contract signing and deposit freeze via integrated payment gateways.
+    4. **Deployment:** GPS geofencing triggers upon arrival; caregiver identity verified via QR biometrics.
+    5. **Clinical Management:** Real-time logging of physician instructions, billing codes, and prescription data.
+    6. **Rehabilitation Log:** Post-consultation report generation including follow-up scheduling.
+    7. **Validation:** Bi-directional rating system and automated health file updates.
+    8. **Financial Settlement:** Automated reconciliation of base fees, mileage, and medical advances.
+    """)
 
-# --- 3. SERVICE & WORKFLOW ---
-elif app_mode == "Service & Workflow":
-    st.title("⚙️ Service Architecture & AI Matching")
-    
-    st.markdown("#### The 8-Step Smart Matching Journey")
-    steps = ["1. Demand Submission", "2. AI Matching", "3. Reservation", "4. Departure", "5. Hospital Support", "6. Return", "7. Report Gen", "8. Settlement"]
-    st.write(" ➔ ".join(steps))
-    
-    tab1, tab2 = st.tabs(["Service Types", "Staff Categories"])
-    
-    with tab1:
-        st.markdown("""
-        - **Standard:** Check-in, medical recording, medication collection.
-        - **Premium:** Barrier-free transportation (Uber/Wheelchair Taxi).
-        - **Value-added:** Smart health tracking & follow-up reminders via LINE.
-        """)
-    
-    with tab2:
-        st.write("Caregivers are vetted and audited annually.")
-        col_a, col_b = st.columns(2)
-        col_a.info("**Type A: Certified Caregivers**\n\nRate: NT$500-800/hr")
-        col_b.info("**Type B: Medical Students**\n\nRate: NT$300-450/hr")
+# Service Classification Table
+st.write("#### Service Categorization & Human Capital")
+c1, c2 = st.columns(2)
+with c1:
+    st.write("**Caregiver Tiers**")
+    st.write("- **Type A (Certified):** NT$500-800/hr (Professional caregivers)")
+    st.write("- **Type B (Medical Interns):** NT$300-450/hr (Medical/Nursing students)")
+    st.write("- **Type C (Retired Experts):** NT$450-650/hr (Retired Nurses/Social Workers)")
+with c2:
+    st.write("**Operational Features**")
+    st.write("- **Fleet Management:** Partnership with Uber/Barrier-free taxi services.")
+    st.write("- **Smart Reminders:** Automated LINE notifications for follow-up & medication.")
+    st.write("- **Digital Ledger:** Secure storage of medical records & history.")
 
-# --- 4. BUSINESS MODEL ---
-elif app_mode == "Business Model":
-    st.title("💎 Business Strategy")
-    
-    st.markdown("### Revenue Streams")
-    biz_data = {
-        "Source": ["Direct Service Fees", "Matching Commission", "B2B Partnership", "Gov. Contracts"],
-        "Share": [60, 25, 10, 5]
-    }
-    df_biz = pd.DataFrame(biz_data)
-    fig_biz = px.pie(df_biz, values='Share', names='Source', title='Projected Revenue Distribution')
-    st.plotly_chart(fig_biz)
+# --- SECTION 4: FINANCIALS & GROWTH MODEL ---
+st.header("IV. Financial Projections & Business Model")
+col_f1, col_f2 = st.columns([1, 1])
 
-    with st.container():
-        st.write("### Pricing Strategy")
-        st.table({
-            "Service": ["Base Accompaniment", "Platform Fee", "Urgent/Rush Fee"],
-            "Price": ["NT$500/hr", "30% of Service Fee", "+50% Premium"]
-        })
+with col_f1:
+    st.write("#### Revenue Architecture")
+    revenue_data = pd.DataFrame({
+        "Revenue Stream": ["Service Fees", "Matching Commission (30%)", "B2B Partnership", "Gov. Grants"],
+        "Weight": [60, 25, 10, 5]
+    })
+    fig = px.pie(revenue_data, values='Weight', names='Revenue Stream', 
+                 color_discrete_sequence=['#1a3a5f', '#2c3e50', '#5a7d9a', '#a9c0d3'])
+    fig.update_layout(showlegend=True, margin=dict(t=0, b=0, l=0, r=0))
+    st.plotly_chart(fig, use_container_width=True)
 
-# --- 5. FINANCIAL PLAN ---
-elif app_mode == "Financial Plan":
-    st.title("💰 Annual Budget Projection")
-    
+with col_f2:
+    st.write("#### Annual Capital Requirements")
     budget_data = {
-        "Category": ["Platform Dev", "Marketing", "HR/Training", "Admin & Rent", "Miscellaneous"],
-        "Amount (TWD)": [100000, 100000, 20000, 1565000, 60000]
+        "Platform Development": 100000,
+        "Marketing & Acquisition": 100000,
+        "HR & Training Operations": 20000,
+        "Admin & Infrastructure": 1565000,
+        "Operations Reserve": 60000
     }
-    df_budget = pd.DataFrame(budget_data)
-    
-    col_chart, col_val = st.columns([2, 1])
-    with col_chart:
-        fig = px.bar(df_budget, x='Category', y='Amount (TWD)', color='Category', text_auto='.2s')
-        st.plotly_chart(fig)
-    
-    with col_val:
-        st.metric("Total Annual Capital", "TWD 1,845,000")
-        st.write("**Key Expenditures:**\n- Office Rent (TWD 10k/mo)\n- Ad Spend (Google/FB/KOL)")
+    st.bar_chart(pd.Series(budget_data))
+    st.markdown("**Total Projected Capital: TWD 1,845,000 / Year**")
+
+# --- SECTION 5: COMPETITIVE ADVANTAGE ---
+st.header("V. Competitive Advantage & Social Impact")
+st.write("""
+- **Technological Barrier:** AI matching algorithms and blockchain-verified certifications.
+- **Service Standardization:** Uniform training protocols and multi-language support (Mandarin, Taiwanese, Hakka, English).
+- **ESG Alignment:** Direct contribution to UN Sustainable Development Goal 3 (Good Health and Well-being).
+""")
 
 st.markdown("---")
-st.caption("© 2026 CareMate Project Team | National Tsing Hua University")
+st.caption("© 2026 CareMate Strategic Planning Team | Confidential & Proprietary")
